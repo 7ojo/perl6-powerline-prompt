@@ -3,7 +3,7 @@
 
 Make a useful prompt for your shell.
 
-[![Screenshot](https://raw.githubusercontent.com/7ojo/perl6-powerline-prompt/master/examples/powerline-prompt.png)]
+![Screenshot](https://raw.githubusercontent.com/7ojo/perl6-powerline-prompt/master/examples/powerline-prompt.png)
 
 # SYNOPSIS
 
