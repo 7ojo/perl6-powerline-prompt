@@ -20,6 +20,8 @@ Make a useful prompt for your shell.
 
 ## Bash
 
+~/.bashrc
+
     function _update_ps1() {
         PS1="$(~/powerline-prompt.p6 $? 2> /dev/null)"
     }
