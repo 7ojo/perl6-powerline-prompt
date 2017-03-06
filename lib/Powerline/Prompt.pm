@@ -5,6 +5,9 @@ use Powerline::Prompt::Segment;
 
 role Powerline::Prompt {
 
+    has Str $.path = '.';
+    has Int $.exit = 0;
+
     method draw {
         my @segments;
 
@@ -15,7 +18,7 @@ role Powerline::Prompt {
         @segments.push( Powerline::Prompt::Segment.new(text => $.host, foreground => 250, background => 238) );
 
         # Git
-        my %branch-info = Git::Simple.new.branch-info;
+        my %branch-info = Git::Simple.new(cwd => $.path).branch-info;
         @segments.push( Powerline::Prompt::Segment.new(text => " {%branch-info<local>.Str} ", foreground => 0, background => 148) ) if %branch-info.elems > 0;
 
         # Root

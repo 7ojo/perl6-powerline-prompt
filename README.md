@@ -7,7 +7,7 @@ Make a useful prompt for your shell.
 
 # SYNOPSIS
 
-~/powerline-prompt.p6
+examples/powerline-prompt.p6
 
     #!/usr/bin/env perl6
 
@@ -20,10 +20,34 @@ Make a useful prompt for your shell.
 
 ## Bash
 
+### Daemon example
+
+This is for faster setup
+
+~/.bashrc
+
+    TEMP=$(tty)
+    POWERLINE_PORT=$((3333 + ${TEMP:9}))
+
+    perl6 examples/powerline-daemon.p6 --port=${POWERLINE_PORT} &
+
+    sleep 0.2 # wait for daemon to start
+
+    function _update_ps1() {
+        local EXIT="$?"
+        PS1="$(exec 5<>/dev/tcp/localhost/${POWERLINE_PORT} ; echo ${PWD} ${EXIT} >&5 ; cat <&5)"
+    }
+    if [ "$TERM" != "linux" ]; then
+        PROMPT_COMMAND="_update_ps1; $PROMPT_COMMAND"
+    fi
+
+
+### Basic example
+
 ~/.bashrc
 
     function _update_ps1() {
-        PS1="$(~/powerline-prompt.p6 $? 2> /dev/null)"
+        PS1="$(examples/powerline-prompt.p6 $? 2> /dev/null)"
     }
 
     if [ "$TERM" != "linux" ]; then
