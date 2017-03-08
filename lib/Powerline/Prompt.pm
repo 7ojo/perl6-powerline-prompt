@@ -4,6 +4,7 @@ use Powerline::Prompt::Segment;
 use Powerline::Prompt::Segment::Git;
 use Powerline::Prompt::Segment::Root;
 use Powerline::Prompt::Segment::Path;
+use Powerline::Prompt::Segment::Readonly;
 
 role Powerline::Prompt {
 
@@ -24,6 +25,7 @@ role Powerline::Prompt {
 
         # Path
         @segments.push( Powerline::Prompt::Segment::Path.new(homedir => %*ENV<HOME>, cwd => $.path) );
+        @segments.push( Powerline::Prompt::Segment::Readonly.new(cwd => $.path) );
 
         # Git
         @segments.push( Powerline::Prompt::Segment::Git.new(cwd => $.path) );
