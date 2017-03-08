@@ -2,6 +2,7 @@ use v6;
 
 use Powerline::Prompt::Segment;
 use Powerline::Prompt::Segment::Git;
+use Powerline::Prompt::Segment::Root;
 
 role Powerline::Prompt {
 
@@ -25,7 +26,7 @@ role Powerline::Prompt {
         @segments.push( Powerline::Prompt::Segment::Git.new(cwd => $.path) );
 
         # Root
-        @segments.push( Powerline::Prompt::Segment.new(text => $.root, foreground => 15, background =>  236) );
+        @segments.push( Powerline::Prompt::Segment::Root.new(text => $.root, exitcode => $.exit) );
 
         my Str $prompt = '';
         while my $segment = @segments.shift {

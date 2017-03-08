@@ -1,6 +1,6 @@
 {
     "name"          : "Powerline::Prompt",
-    "version"       : "0.0.1",
+    "version"       : "0.0.2",
     "perl"          : "6",
     "description"   : "Make a useful prompt for your shell",
     "authors"       : [ "Jarkko Haapalainen <jarkko@viidakko.fi>" ],
@@ -9,6 +9,7 @@
         "Powerline::Prompt"                 : "lib/Powerline/Prompt.pm",
         "Powerline::Prompt::Segment"        : "lib/Powerline/Prompt/Segment.pm",
         "Powerline::Prompt::Segment::Git"   : "lib/Powerline/Prompt/Segment/Git.pm",
+        "Powerline::Prompt::Segment::Root"  : "lib/Powerline/Prompt/Segment/Root.pm",
         "Powerline::Prompt::Shell::Bash"    : "lib/Powerline/Prompt/Shell/Bash.pm"
     },
     "depends"       : [
