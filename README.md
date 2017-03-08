@@ -31,7 +31,7 @@ This is for faster setup
 
     perl6 examples/powerline-daemon.p6 --port=${POWERLINE_PORT} &
 
-    sleep 0.3 # wait for daemon to start
+    sleep 0.2 # wait for daemon to start
 
     function _update_ps1() {
         local EXIT="$?"
