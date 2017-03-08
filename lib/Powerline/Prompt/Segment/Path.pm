@@ -38,7 +38,7 @@ class Powerline::Prompt::Segment::Path is Powerline::Prompt::Segment {
         @!parts.push( Powerline::Prompt::Segment.new(text => '/', foreground => 250, background => 237) ) if @!parts.elems == 0;
     }
 
-    method draw(Powerline::Prompt::Segment $outer) {
+    method draw($outer?) {
         my Str $out;
         my Str $separator;
         my Int $separator_fg;
@@ -47,7 +47,7 @@ class Powerline::Prompt::Segment::Path is Powerline::Prompt::Segment {
         my $i_max=@.parts.elems;
         while my $part = @.parts.shift {
             $next = @.parts[0];
-            if $i == 0 || $i == $i_max-1 {
+            if ($i == 0 && $part.text eq '~') || $i == $i_max-1 {
                 $separator = '';
                 $separator_fg = 31;
             } else {

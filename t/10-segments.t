@@ -2,11 +2,12 @@ use v6;
 use lib 'lib';
 use Test;
 use Powerline::Prompt::Segment::Path;
+use Powerline::Prompt::Segment::Readonly;
 
 plan 1;
 
 subtest 'Powerline::Prompt::Segment::Path', {
-    plan 10;
+    plan 12;
     sub to-path($seg) {
         my @parts;
         for $seg.parts -> $part {
@@ -44,5 +45,11 @@ subtest 'Powerline::Prompt::Segment::Path', {
 
     $seg = Powerline::Prompt::Segment::Path.new(homedir => '/Users/myaccount', cwd => '/usr/local/share/perl6/sources');
     is to-path($seg), 'usr/local/…/perl6/sources', 'got usr/local/…/perl6/sources';
+
+    $seg = Powerline::Prompt::Segment::Path.new(homedir => '/Users/myaccount', cwd => '/usr/local');
+    is to-path($seg), 'usr/local', 'got usr/local';
+
+    my Str $temp = $seg.draw(Powerline::Prompt::Segment::Readonly.new(cwd => '/usr/local'));
+    is $temp.substr(33, 20), 'usr \[\e[38;5;244m\]', 'foreground color'
 };
 
